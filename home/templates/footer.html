@@ -1,10 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% load static %}
+<footer class="footer">
+        <div class="container bottom_border">
+            <div class="row">
+               <div class="col-lg-3 col-md-6 col-sm-6 col">
+					<h5 class="headin5_amrc col_white_amrc pt2">İletişim</h5>
+					<!--headin5_amrc-->
+					<p><i class="fa fa-location-arrow"></i> {{ setting.address }} </p>
+					<p><i class="fa fa-phone"></i> {{ setting.phone }} </p>
+					<p><i class="fa fa fa-envelope"></i> {{ setting.email }}</p>
+               </div>
+               <div class="col-lg-3 col-md-6 col-sm-6 col">
+					<h5 class="headin5_amrc col_white_amrc pt2">Bizi Takip Et</h5>
+					<!--headin5_amrc ends here-->
+					<ul class="footer_ul2_amrc">
+						<li>
+							<a href="{{ setting.twitter }}" target="_blank"><i class="fab fa-facebook fleft padding-right"></i> </a>
+							<p><a href="{{ setting.twitter }}" target="_blank">Avcıoğlu Fidancılık</a></p>
+						</li>
+						<li>
+							<a href="{{ setting.instagram }}" target="_blank"><i class="fab fa-instagram fleft padding-right"></i> </a>
+							<p><a href="{{ setting.instagram }}" target="_blank">avcioglu_tarim</a></p>
+						</li>
+						<li>
+							<a href="{{ setting.whatsapp }}" target="_blank"><i class="fab fa-whatsapp fleft padding-right"></i> </a>
+							<p><a href="{{ setting.whatsapp }}" target="_blank">05373815390</a></p>
+						</li>
+					</ul>
+					<!--footer_ul2_amrc ends here-->
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<h5 class="headin5_amrc col_white_amrc pt2">Site Haritası</h5>
+					<!--headin5_amrc-->
+					<ul class="footer_ul_amrc">
+						<li><a href="/hakkimizda">Hakkımızda</a></li>
+						<li><a href="/SSS">Sık Sorulan Sorular</a></li>
+						<li><a href="/iletisim">İletişim</a></li>
+					</ul>
+					<!--footer_ul_amrc ends here-->
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6 ">
+					<h5 class="headin5_amrc col_white_amrc pt2"></h5>
+					<!--headin5_amrc-->
+					<ul class="footer_ul_amrc">
+						<li class="media">
+							<div class="media-left">
+								<img class="img-fluid" src="{% static 'images/beyaz.png' %}" alt="" />
+							</div>
+						</li>
+					</ul>
+					<!--footer_ul_amrc ends here-->
+				</div>
+			</div>
+		</div>
+        <div class="container">
+            <div class="footer-logo">
+				<a href="#"><img src="{% static 'images/headerlogo.png' %}" alt="" /></a>
+			</div>
+            <!--foote_bottom_ul_amrc ends here-->
+            <p class="copyright text-center">All Rights Reserved. &copy; 2020 <a href="#">Avcıoğlu Tarım</a>
+{#                Design By : <a href="https://html.design/">html design</a>#}
+            </p>
+            <ul class="social_footer_ul">
+				<li><a href="{{ setting.twitter }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+				<li><a href="{{ setting.whatsapp }}" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+{#				<li><a href="{{ setting.phone }}" target="_blank"><i class="fab fa-phone"></i></a></li>#}
+				<li><a href="{{ setting.instagram }}" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+            <!--social_footer_ul ends here-->
+        </div>
+    </footer>
 
-</body>
-</html>
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>

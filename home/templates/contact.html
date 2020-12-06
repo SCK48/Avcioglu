@@ -1,0 +1,80 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %} İletişim | {{ setting.company }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+
+{% block content %}
+{#    <div class="full-title">#}
+{#        <div class="container">#}
+{#            <!-- Page Heading/Breadcrumbs -->#}
+{#            <h1 class="mt-4 mb-3">Contact#}
+{#                <small>Subheading</small>#}
+{#            </h1>#}
+{#        </div>#}
+{#    </div>#}
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="breadcrumb-main">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/">Ana Sayfa</a>
+                </li>
+                <li class="breadcrumb-item active">İletişim</li>
+            </ol>
+        </div>
+
+        <!-- Content Row -->
+        <div class="row">
+            <!-- Map Column -->
+            <div class="col-lg-8 mb-4">
+                <!-- Embedded Google Map -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1337.4198282472053!2d28.533407911178923!3d37.13038169179386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14bf7b98fa58a07d%3A0xc89b2d195b5ad7b6!2zQXZjxLFvxJ9sdSBGaWRhbmPEsWzEsWs!5e0!3m2!1sen!2str!4v1606936143369!5m2!1sen!2str" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </div>
+            <!-- Contact Details Column -->
+            <div class="col-lg-4 mb-4 contact-right">
+
+                <h3>İletişime Geç</h3>
+                <p>
+                    <i class="fa fa-location-arrow"></i> {{ setting.address }}
+                </p>
+                <p>
+                    <i class="fa fa-phone"></i> {{ setting.phone }} - Ziraat Mühendisi Emre AVCI
+                </p>
+                <p>
+                    <i class="fa fa fa-envelope"></i> {{ setting.email }}
+                </p>
+                <p>
+                    <abbr title="Çalışma Saatleri">Ç.S.</abbr>: Pazartesi - Cuma: 8:00 - 18:30 <br> Haftasonu : 9:00 - 19:00
+                </p>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Contact Form -->
+        <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+        <div class="row">
+            <div class="col-lg-8 mb-4 contact-left" id="iletisimegec">
+                <h3>Bize Mesaj Gönder</h3>
+                {%  if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}" role="alert">
+                                {{ message|safe }}
+                            </div>
+                        {% endfor %}
+                {% endif %}
+                <form action="#" method="POST" name="sentMessage" id="contactForm" novalidate>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div id="success"></div>
+                    <!-- For success/fail messages -->
+                    <button type="submit" class="btn btn-primary" id="sendMessageButton">Gönder</button>
+                </form>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %} Sıkça Sorulan Sorular | {{ setting.company }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+
+{% block content %}
+{#    <div class="full-title">#}
+{#        <div class="container">#}
+{#            <!-- Page Heading/Breadcrumbs -->#}
+{#            <h1 class="mt-4 mb-3">Contact#}
+{#                <small>Subheading</small>#}
+{#            </h1>#}
+{#        </div>#}
+{#    </div>#}
+
+    <div class="container">
+		<div class="breadcrumb-main">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="/">Ana Sayfa</a>
+				</li>
+				<li class="breadcrumb-item active">SSS</li>
+			</ol>
+		</div>
+
+		<div class="faq-main">
+			<div class="" id="accordion" role="tablist" aria-multiselectable="true">
+                {% for counter in faq %}
+				<div class="card accordion-single">
+				  <div class="card-header" role="tab" id="heading{{ forloop.counter }}">
+					<h5 class="mb-0">
+					  <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ forloop.counter }}" aria-expanded="true"
+                         aria-controls="collapse{{ forloop.counter }}">{{ counter.header }}</a>
+					</h5>
+				  </div>
+
+				  <div id="collapse{{ forloop.counter }}" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+					<div class="card-body">
+					  {{ counter.answer|safe }}
+					</div>
+				  </div>
+				</div>
+                {% endfor %}
+			</div>
+		</div>
+
+    </div>
+{% endblock %}

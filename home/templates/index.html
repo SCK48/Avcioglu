@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "homebase.html" %}
 
-</body>
-</html>
+{% block title %} Avcıoğlu {% endblock %}
+{% block keywords %}  {% endblock %}
+{% block header %}
+
+{% endblock %}
+{% block slider %}
+    {% include "slider.html" %}
+{% endblock %}
+
+{% block content %}
+    {% include "content.html" %}
+{% endblock %}
+
+
