@@ -2,7 +2,6 @@
 {% load static %}
 {% block title %} Ürünlerimiz | {{ setting.company }} {% endblock %}
 {% block keywords %} {{ setting.keywords }} {% endblock %}
-{% load static %}
 {% block header %}
 
 {% endblock %}
@@ -24,7 +23,7 @@
                     <div class="card h-100">
                         <div class="card-img">
                             <a href="/kategori/{{ counter.id }}/{{ counter.slug }}">
-                                <img class="card-img-top" style="border:5px solid #4eae3a" height="200px"  src="{{ counter.image.url }}" alt="" />
+                                <img class="card-img-top" style="border:5px solid #4eae3a"   src="{{ counter.image.url }}" alt="" />
                                 <div class="overlay"><a href="/kategori/{{ counter.id }}/{{ counter.slug }}" ><i><span><strong>Detaylı Bilgi</strong></span></i></a> </div>
                             </a>
                         </div>
@@ -36,65 +35,8 @@
                     </div>
                 </div>
             {% endfor %}
-            <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="{% static 'images/portfolio-big-02.jpg' %}" alt="" /></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Project Two</a>
-                        </h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="{% static 'images/portfolio-big-03.jpg' %}" alt="" /></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Project Three</a>
-                        </h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="{% static 'images/portfolio-big-04.jpg' %}" alt="" /></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Project Five</a>
-                        </h4>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
-
-        <div class="pagination_bar">
-            <!-- Pagination -->
-            <ul class="pagination justify-content-center">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
 
     </div>
     <!-- /.container -->

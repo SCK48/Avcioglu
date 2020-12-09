@@ -5,25 +5,15 @@
 
 
 {% block content %}
-{#    <div class="full-title">#}
-{#        <div class="container">#}
-{#            <!-- Page Heading/Breadcrumbs -->#}
-{#            <h1 class="mt-4 mb-3">Contact#}
-{#                <small>Subheading</small>#}
-{#            </h1>#}
-{#        </div>#}
-{#    </div>#}
-
     <div class="container">
 		<div class="breadcrumb-main">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item">
 					<a href="/">Ana Sayfa</a>
 				</li>
-				<li class="breadcrumb-item active">SSS</li>
+				<li class="breadcrumb-item active">Sıkça Sorulan Sorular</li>
 			</ol>
 		</div>
-
 		<div class="faq-main">
 			<div class="" id="accordion" role="tablist" aria-multiselectable="true">
                 {% for counter in faq %}
@@ -34,7 +24,6 @@
                          aria-controls="collapse{{ forloop.counter }}">{{ counter.header }}</a>
 					</h5>
 				  </div>
-
 				  <div id="collapse{{ forloop.counter }}" class="collapse" role="tabpanel" aria-labelledby="headingOne">
 					<div class="card-body">
 					  {{ counter.answer|safe }}
@@ -44,6 +33,5 @@
                 {% endfor %}
 			</div>
 		</div>
-
     </div>
 {% endblock %}

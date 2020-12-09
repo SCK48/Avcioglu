@@ -206,7 +206,7 @@ button.btn-secondary:hover{
 .overlay{
 	background: rgba(78,174,58,0.5); /* Overlay background color */
 	position: absolute;
-	bottom: -100%;
+	bottom: 100%;
 	width: 100%;
 	height: 100%;
 	left: 50%;
@@ -214,7 +214,7 @@ button.btn-secondary:hover{
 	transition: all 0.3s;
 }
 .overlay i{
-	/*font-size: 30px; */
+	font-size: 20px;
 	font-style: normal;
 	position: absolute;
 	top: 30%;
@@ -269,7 +269,7 @@ footer p {
 	margin-right: 10px;
 }
 .footer_ul_amrc li .media-left img{
-	max-width: 50px;
+	max-width: 180px;
 }
 .footer_ul_amrc li .media-body p{
 	font-size: 14px;
@@ -302,7 +302,7 @@ footer p {
 	margin-top:5px;
 	}
 .footer_ul2_amrc li a {
-	color: #4eae3a;
+	color: #cccccc;
 }
 .bottom_border { 
 	border-bottom:1px solid #323f45; 

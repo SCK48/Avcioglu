@@ -4,6 +4,7 @@ from django.db import models
 # Create your models here.
 from django.urls import reverse
 from django.utils.safestring import mark_safe
+from django.views.generic import ListView
 
 
 class Category(models.Model):
@@ -93,3 +94,22 @@ class Variants(models.Model):
     class Meta:
         verbose_name='Çeşitler'
         verbose_name_plural='Çeşitler'
+
+class Slider(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Ürün')
+    keywords = models.CharField(max_length=30)
+    description = models.TextField(max_length=300, verbose_name='Açıklama')
+    status = models.BooleanField(verbose_name='Durum')
+    created_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.product.name
+
+    class Meta:
+        verbose_name='Slider'
+        verbose_name_plural='Sliderlar'
+
+class ProductList(ListView):
+    paginate_by = 2
+    model = Product

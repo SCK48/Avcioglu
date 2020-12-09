@@ -71,3 +71,16 @@ class FAQ(models.Model):
     class Meta:
         verbose_name='SSS'
         verbose_name_plural='SSS'
+
+class SettingGallery(models.Model):
+    setting = models.ForeignKey(Setting, on_delete=models.CASCADE)
+    title = models.CharField(max_length=50, blank=True)
+    status = models.BooleanField(verbose_name='Durum')
+    image = models.ImageField(blank=True, upload_to='images/')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name='Galeri'
+        verbose_name_plural='Galeri'

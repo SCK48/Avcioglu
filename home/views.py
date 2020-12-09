@@ -1,24 +1,26 @@
 from django.contrib import messages
+from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from home.models import Setting, ContactForm, ContactFormMessage, FAQ
-from product.models import Category, Product
+from home.models import Setting, ContactForm, ContactFormMessage, FAQ, SettingGallery
+from product.models import Category, Product, Slider
 
 
 def index(request):
     category = Category.objects.filter(status='Açık').order_by('id')
+    product = Product.objects.filter(status='Açık').order_by('id')[:6]
     test = Category.objects.get(pk=1)
     setting = Setting.objects.get(pk=1)
-    # campaign = Kampanya.objects.filter(durum=True).order_by('-id')
+    slider = Slider.objects.filter(status=True).order_by('-id')
     # content = Content.objects.filter(status='On')
     context = {
         'category': category,
         'test': test,
         'setting': setting,
-        # 'campaign': campaign,
-        # 'content': content,
+        'slider': slider,
+        'product': product,
         'page': 'home',
 
     }
@@ -55,10 +57,12 @@ def contact(request):
 def aboutus(request):
     category = Category.objects.filter(status='Açık').order_by('id')
     setting = Setting.objects.get(pk=1)
+    gallery = SettingGallery.objects.filter(status=True)
     context = {
-         'category': category,
+        'category': category,
         'setting': setting,
-        'page': 'home',
+        'gallery': gallery,
+        'page': 'about',
     }
     return render(request, "aboutus.html", context)
 
@@ -101,19 +105,45 @@ def category_detail(request, id, slug):
 def product_detail(request,id,slug):
     category = Category.objects.filter(status='Açık').order_by('id')
     product = Product.objects.get(pk=id)
+    related_products = Product.objects.filter(category_id=product.category_id, status='Açık')
     setting = Setting.objects.get(pk=1)
     context = {
         'category': category,
         'setting': setting,
         'product': product,
+        'related_products': related_products,
         'page': 'product',
     }
     return render(request, "product_detail.html", context)
 
+
+def handler404(request, exception):
+    setting = Setting.objects.get(pk=1)
+    context = {
+        'setting': setting,
+    }
+    return render(request, '404.html', context)
 
 def handler500(request):
     setting = Setting.objects.get(pk=1)
     context = {
         'setting': setting,
     }
-    return render(request, '404.html', context)
+    return render(request, '500.html', context)
+
+def gallery(request):
+    category = Category.objects.filter(status='Açık').order_by('id')
+    images = Product.objects.filter(status='Açık')
+    paginator = Paginator(images, 12)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    setting = Setting.objects.get(pk=1)
+    context = {
+        'category': category,
+        'setting': setting,
+        'images': images,
+        'page_obj': page_obj,
+        'page': 'gallery',
+    }
+    return render(request, 'gallery.html', context)

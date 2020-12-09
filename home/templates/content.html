@@ -9,7 +9,7 @@
                 <div class="card h-100">
                     <h4 class="card-header">Çeşit Seçimi</h4>
                     <div class="card-img">
-                        <img class="img-fluid" src="/uploads/images/servis1.png" alt="" />
+                        <img class="img-fluid" src="/static/images/servis1.png" alt="" />
                     </div>
                     <div class="card-body">
                         <p class="card-text">
@@ -25,7 +25,7 @@
                 <div class="card h-100">
                     <h4 class="card-header">Teknik Destek</h4>
                     <div class="card-img">
-                        <img class="img-fluid" src="/uploads/images/servis2.png" alt="" />
+                        <img class="img-fluid" src="/static/images/servis2.png" alt="" />
                     </div>
                     <div class="card-body">
                         <p class="card-text">
@@ -42,7 +42,7 @@
                 <div class="card h-100">
                     <h4 class="card-header">Arazi Planlaması</h4>
                     <div class="card-img">
-                        <img class="img-fluid" src="/uploads/images/servis3.png" alt="" />
+                        <img class="img-fluid" src="/static/images/servis3.png" alt="" />
                     </div>
                     <div class="card-body">
                         <p class="card-text">
@@ -61,60 +61,36 @@
     <div class="about-main">
         <div class="row">
             <div class="col-lg-6">
-                <h2>Welcome to N & LW Lawn Care</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <h5>Our smart approach</h5>
-                <ul>
-                    <li>Sed at tellus eu quam posuere mattis.</li>
-                    <li>Phasellus quis erat et enim laoreet posuere ac porttitor ipsum.</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                    <li>Duis porttitor odio pellentesque mollis vulputate.</li>
-                    <li>Quisque ac eros non ex hendrerit vehicula.</li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
+                <h2>{{ setting.company }}</h2>
+                <p>{{ setting.aboutus|safe }}</p>
             </div>
             <div class="col-lg-6">
-                <img class="img-fluid rounded" src="{% static 'images/about-img.jpg' %}" alt="" />
+                <img class="img-fluid rounded" src="/static/images/logoabout750x450.png" alt="" />
             </div>
         </div>
         <!-- /.row -->
     </div>
     <!-- Portfolio Section -->
     <div class="portfolio-main">
-        <h2>Our Portfolio</h2>
+        <h2>Fidanlarımız</h2>
         <div class="row">
-            {% for rs in category %}
+            {% for rs in product %}
                 <div class="col-lg-4 col-sm-6 portfolio-item">
                     <div class="card h-100">
                         <div class="card-img">
-                            <a href="#">
+                            <a href="/kategori/{{ rs.category_id }}/{{ rs.category.slug }}">
                                 <img class="card-img-top" style="border:5px solid #4eae3a" src="{{ rs.image.url }}" alt="" />
-                                <div class="overlay"><a href=""><i><span>Detaylı Bilgi</span></i></a> </div>
+                                <div class="overlay"><a href="/kategori/{{ rs.category_id }}/{{ rs.category.slug }}"><i><span>Detaylı Bilgi</span></i></a> </div>
                             </a>
                         </div>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="#">{{ rs.name }}</a>
+                                <a href="/kategori/{{ rs.category_id }}/{{ rs.category.slug }}">{{ rs.name }}</a>
                             </h4>
                         </div>
                     </div>
                 </div>
             {% endfor %}
-            <div class="col-lg-4 col-sm-6 portfolio-item">
-                <div class="card h-100">
-                    <div class="card-img">
-                        <a href="#">
-                            <img class="card-img-top" src="{% static 'images/portfolio-img-04.jpg' %}" alt="" />
-                            <div class="overlay"><i class="fas fa-arrows-alt"></i></div>
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Water Baganig</a>
-                        </h4>
-                    </div>
-                </div>
-            </div>
         </div>
         <!-- /.row -->
     </div>

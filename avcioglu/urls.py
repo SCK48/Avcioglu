@@ -24,6 +24,9 @@ from home import views
 admin.autodiscover()
 admin.site.enable_nav_sidebar = False
 
+handler404 = views.handler404
+handler500 = views.handler500
+
 urlpatterns = [
     path('', include('home.urls')),
     path('home/', include('home.urls')),
@@ -35,6 +38,7 @@ urlpatterns = [
     path('hakkimizda/', views.aboutus, name='hakkimizda'),
     path('ürünler/', views.category, name='ürünler'),
     path('ürün/', views.product_detail, name='ürün_detay'),
+    path('galeri/', views.gallery, name='galeri'),
     path('kategori/<int:id>/<slug:slug>/', views.category_detail, name='kategori_detay'),
     path('ürün/<int:id>/<slug:slug>/', views.product_detail, name='kategori_detay'),
     path('SSS/', views.faq, name='SSS'),

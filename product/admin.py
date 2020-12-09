@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from product.models import Category, Product, Age, Variants
+from product.models import Category, Product, Age, Variants, Slider
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -26,8 +26,11 @@ class ProductAdmin(admin.ModelAdmin):
 class VariantAdmin(admin.ModelAdmin):
     list_display = ['title', 'product', 'age', 'price']
 
+class SliderAdmin(admin.ModelAdmin):
+    list_display = ['product', 'description', 'status']
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Age)
 admin.site.register(Variants, VariantAdmin)
+# admin.site.register(Slider, SliderAdmin)

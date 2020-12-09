@@ -29,72 +29,14 @@
 
 		<!-- Team Members -->
 		<div class="team-members-box">
-			<h2>Galeri</h2>
 			<div class="row">
+                {% for rs in gallery %}
 				<div class="col-lg-4 mb-4">
 				  <div class="card h-100 text-center">
-					<img class="card-img-top" src="{% static 'images/team_01.jpg' %}" alt="" />
-
-					<div class="card-footer">
-						<ul>
-							<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-							<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-						</ul>
-					</div>
+					<img class="card-img-top" style="border:5px solid #4eae3a" src="{{ rs.image.url }}" alt="" />
 				  </div>
 				</div>
-				<div class="col-lg-4 mb-4">
-				  <div class="card h-100 text-center">
-					<img class="card-img-top" src="{% static 'images/team_02.jpg' %}" alt="" />
-
-					<div class="card-footer">
-						<ul>
-							<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-							<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-						</ul>
-					</div>
-				  </div>
-				</div>
-				<div class="col-lg-4 mb-4">
-				  <div class="card h-100 text-center">
-					<img class="card-img-top" src="{% static 'images/team_03.jpg' %}" alt="" />
-
-					<div class="card-footer">
-						<ul>
-							<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-							<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-						</ul>
-					</div>
-				  </div>
-				</div>
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- Our Customers -->
-		<div class="customers-box">
-			<h2>Our Customers</h2>
-			<div class="row">
-				<div class="col-lg-2 col-sm-4 mb-4">
-				  <img class="img-fluid" src="{% static 'images/logo_01.png' %}" alt="" />
-				</div>
-				<div class="col-lg-2 col-sm-4 mb-4">
-				  <img class="img-fluid" src="{% static 'images/logo_02.png' %}" alt="" />
-				</div>
-				<div class="col-lg-2 col-sm-4 mb-4">
-				  <img class="img-fluid" src="{% static 'images/logo_03.png' %}" alt="" />
-				</div>
-				<div class="col-lg-2 col-sm-4 mb-4">
-				  <img class="img-fluid" src="{% static 'images/logo_04.png' %}" alt="" />
-				</div>
-				<div class="col-lg-2 col-sm-4 mb-4">
-				  <img class="img-fluid" src="{% static 'images/logo_05.png' %}" alt="" />
-				</div>
-				<div class="col-lg-2 col-sm-4 mb-4">
-				  <img class="img-fluid" src="{% static 'images/logo_06.png' %}" alt="" />
-				</div>
+                {% endfor %}
 			</div>
 			<!-- /.row -->
 		</div>

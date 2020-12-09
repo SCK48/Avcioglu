@@ -2,7 +2,6 @@
 {% load static %}
 {% block title %} Ürünlerimiz | {{ setting.company }} {% endblock %}
 {% block keywords %} {{ setting.keywords }} {% endblock %}
-{% load static %}
 
 {% block content %}
 
@@ -64,37 +63,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Categories Widget -->
-                <div class="card my-4">
-                    <h5 class="card-header">Categories</h5>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <ul class="list-unstyled mb-0">
-                                    {% for rs in category %}
-                                    <li>
-                                        <a href="#">{{ rs.name }}</a>
-                                    </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            <div class="col-lg-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li>
-                                        <a href="#">JavaScript</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">CSS</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Tutorials</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Side Widget -->
                 <div class="card my-4">
                     <h5 class="card-header">Side Widget</h5>
@@ -107,29 +75,16 @@
             <div class="related-projects">
                 <h3>{{ product.category.name }} Grubu</h3>
                 <div class="row">
+                    {% for counter in related_products %}
                     <div class="col-md-3 col-sm-6 mb-4">
                         <a href="#">
-                            <img class="img-fluid" src="{% static 'images/related-pro-01.jpg' %}" alt="" />
+                            <img class="img-fluid" src="{{ counter.image.url }}" alt="" />
                         </a>
                     </div>
+                    {% endfor %}
 
-                    <div class="col-md-3 col-sm-6 mb-4">
-                        <a href="#">
-                            <img class="img-fluid" src="{% static 'images/related-pro-02.jpg' %}" alt="" />
-                        </a>
-                    </div>
 
-                    <div class="col-md-3 col-sm-6 mb-4">
-                        <a href="#">
-                            <img class="img-fluid" src="{% static 'images/related-pro-03.jpg' %}" alt="" />
-                        </a>
-                    </div>
 
-                    <div class="col-md-3 col-sm-6 mb-4">
-                        <a href="#">
-                            <img class="img-fluid" src="{% static 'images/related-pro-04.jpg' %}" alt="" />
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
