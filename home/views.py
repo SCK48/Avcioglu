@@ -10,7 +10,7 @@ from product.models import Category, Product, Slider
 
 def index(request):
     category = Category.objects.filter(status='Açık').order_by('id')
-    product = Product.objects.filter(status='Açık').order_by('id')[:6]
+    product = Product.objects.filter(status='Açık').order_by('?')[:6]
     setting = Setting.objects.get(pk=1)
     slider = Slider.objects.filter(status=True).order_by('-id')
     # content = Content.objects.filter(status='On')
@@ -131,7 +131,7 @@ def handler500(request):
 
 def gallery(request):
     category = Category.objects.filter(status='Açık').order_by('id')
-    images = Product.objects.filter(status='Açık')
+    images = Product.objects.filter(status='Açık').order_by('-id')
     paginator = Paginator(images, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
