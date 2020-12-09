@@ -11,13 +11,11 @@ from product.models import Category, Product, Slider
 def index(request):
     category = Category.objects.filter(status='Açık').order_by('id')
     product = Product.objects.filter(status='Açık').order_by('id')[:6]
-    test = Category.objects.get(pk=1)
     setting = Setting.objects.get(pk=1)
     slider = Slider.objects.filter(status=True).order_by('-id')
     # content = Content.objects.filter(status='On')
     context = {
         'category': category,
-        'test': test,
         'setting': setting,
         'slider': slider,
         'product': product,
