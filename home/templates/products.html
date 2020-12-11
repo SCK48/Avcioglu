@@ -16,7 +16,7 @@
                     <a href="/">Ana Sayfa</a>
                 </li>
                 <li class="breadcrumb-item active"><a href="/ürünler">Ürünlerimiz</a></li>
-                <li class="breadcrumb-item active">{{ current_cat }}</li>
+                <li class="breadcrumb-item active">{{ current_cat }} Grubu</li>
             </ol>
         </div>
 
@@ -29,7 +29,7 @@
                                     </a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a>{{ counter.name }}</a>
+                                <a href="/ürün/{{ counter.id }}/{{ counter.slug }}">{{ counter.name }}</a>
                             </h4>
                             <p><strong>Hasat Zamanı: {{ counter.date }}</strong></p>
                             <p class="card-text">{{ counter.about|safe }}</p>

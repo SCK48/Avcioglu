@@ -4,6 +4,7 @@ from django.db import models
 # Create your models here.
 from django.urls import reverse
 from django.utils.safestring import mark_safe
+from phonenumber_field.modelfields import PhoneNumberField
 from django.views.generic import ListView
 
 
@@ -71,6 +72,18 @@ class Product(models.Model):
         verbose_name='Ürün'
         verbose_name_plural='Ürünler'
 
+class Images(models.Model):
+        product = models.ForeignKey(Product, on_delete=models.CASCADE)
+        title = models.CharField(max_length=50, blank=True)
+        image = models.ImageField(blank=True, upload_to='images/')
+
+        def __str__(self):
+            return self.title
+
+        class Meta:
+            verbose_name = 'Fotoğraf'
+            verbose_name_plural = 'Fotoğraflar'
+
 class Age(models.Model):
     name = models.CharField(max_length=30, verbose_name='Ad')
     age = models.IntegerField(blank=True, verbose_name='Yaş')
@@ -113,3 +126,26 @@ class Slider(models.Model):
 class ProductList(ListView):
     paginate_by = 2
     model = Product
+
+class Order(models.Model):
+    DURUM = (
+        ('Yeni', 'Yeni'),
+        ('Hazırlanıyor', 'Hazırlanıyor'),
+        ('Tamamlandı', 'Tamamlandı'),
+    )
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Ürün')
+    name = models.CharField(max_length=50, verbose_name='Ad&Soyad')
+    phone = PhoneNumberField(verbose_name='Telefon')
+    email = models.CharField(max_length=30, verbose_name='E-Posta')
+    quantity = models.IntegerField()
+    status = models.CharField(max_length=30, choices=DURUM, default='Yeni')
+    note = models.CharField(blank=True, max_length=200, verbose_name='Açıklama')
+    create_at = models.DateTimeField(auto_now_add=True, verbose_name='Oluşturulma Tarihi')
+    update_at = models.DateTimeField(auto_now=True, verbose_name='Son Güncelleme')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name='Sipariş'
+        verbose_name_plural='Siparişler'

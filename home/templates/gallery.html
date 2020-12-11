@@ -21,7 +21,9 @@
             {% for counter in page_obj %}
                 <div class="col-lg-6 portfolio-item">
                     <div class="card h-100">
-                        <img class="card-img-top" src="{{ counter.image.url }}" alt="" />
+                        <a href="/ürün/{{ counter.id }}/{{ counter.slug }}">
+                            <img class="card-img-top" src="{{ counter.image.url }}" alt="" />
+                        </a>
                     </div>
                 </div>
             {% endfor %}

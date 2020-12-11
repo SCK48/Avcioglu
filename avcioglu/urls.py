@@ -39,8 +39,10 @@ urlpatterns = [
     path('ürünler/', views.category, name='ürünler'),
     path('ürün/', views.product_detail, name='ürün_detay'),
     path('galeri/', views.gallery, name='galeri'),
+    path('search/', views.product_search, name='product_search'),
     path('kategori/<int:id>/<slug:slug>/', views.category_detail, name='kategori_detay'),
     path('ürün/<int:id>/<slug:slug>/', views.product_detail, name='kategori_detay'),
+    path('search_auto/', views.product_search_auto, name='product_search_auto'),
     path('SSS/', views.faq, name='SSS'),
     path('404/', views.handler500, name='404'),
 ]

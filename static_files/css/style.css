@@ -494,7 +494,7 @@ footer p {
 	border: none;
 }
 .blog-right-side .card h5.card-header{
-	background-color: #4e3914;
+	background-color: #4eae3a; /* 4e3914 */
 	color: #ffffff;
 	font-size: 20px;
 	font-weight: 400;
@@ -505,8 +505,8 @@ footer p {
 .blog-right-side .card .card-body ul li a{
 	border-radius: 4.8px;
 	padding: 6px;
-	background: #4e3914;
-	color: #4eae3a;
+	background: #4eae3a;
+	color: #FFFFFF;
 	display: inline-block;
 }
 .pagination_bar_arrow .pagination .page-item .page-link{

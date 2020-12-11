@@ -1,11 +1,14 @@
+import json
+
 from django.contrib import messages
 from django.core.paginator import Paginator
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
+from home.forms import OrderForm, SearchForm
 from home.models import Setting, ContactForm, ContactFormMessage, FAQ, SettingGallery
-from product.models import Category, Product, Slider
+from product.models import Category, Product, Slider, Order, Images
 
 
 def index(request):
@@ -101,15 +104,36 @@ def category_detail(request, id, slug):
     return render(request, "products.html", context)
 
 def product_detail(request,id,slug):
+    url = request.META.get('HTTP_REFERER')
     category = Category.objects.filter(status='Açık').order_by('id')
     product = Product.objects.get(pk=id)
-    related_products = Product.objects.filter(category_id=product.category_id, status='Açık')
+    related_products = Product.objects.filter(category_id=product.category_id, status='Açık')[:5]
+    product_gallery = Images.objects.filter(product_id=id)
     setting = Setting.objects.get(pk=1)
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            data = Order()
+            data.name = form.cleaned_data['name']
+            data.phone = form.cleaned_data['phone']
+            data.email = form.cleaned_data['email']
+            data.note = form.cleaned_data['note']
+            data.quantity = form.cleaned_data['quantity']
+            data.product = form.cleaned_data['product']
+            data.ip = request.META.get('REMOTE_ADDR')
+            data.save()
+            messages.success(request,
+                             "Siparişiniz Alınmıştır, En Kısa Sürede Telefon ile Geri Dönüş Yapılacaktır.")
+            return HttpResponseRedirect(url)
+        else:
+            messages.warning(request, form.errors)
+            return HttpResponseRedirect(url)
     context = {
         'category': category,
         'setting': setting,
         'product': product,
         'related_products': related_products,
+        'product_gallery': product_gallery,
         'page': 'product',
     }
     return render(request, "product_detail.html", context)
@@ -145,3 +169,29 @@ def gallery(request):
         'page': 'gallery',
     }
     return render(request, 'gallery.html', context)
+
+def product_search(request):
+    url = request.META.get('HTTP_REFERER')
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            products = Product.objects.filter(title__icontains=query)
+            return HttpResponse(products)
+            #return HttpResponseRedirect(url)
+    return HttpResponseRedirect(url)
+
+def product_search_auto(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        product = Product.objects.filter(title__icontains=q)
+        results = []
+        for rs in product:
+            product_json = {}
+            product_json = rs.name
+            results.append(product_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)

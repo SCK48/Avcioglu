@@ -1,8 +1,12 @@
 from django.contrib import admin
 
 # Register your models here.
-from product.models import Category, Product, Age, Variants, Slider
+from product.models import Category, Product, Age, Variants, Slider, Order, Images
 
+
+class ProductImageInline(admin.TabularInline):
+    model = Images
+    extra = 3
 
 class CategoryAdmin(admin.ModelAdmin):
     # def category_urun_count(self, obj):
@@ -20,7 +24,7 @@ class ProductVariantsInline(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['name', 'keywords', 'category', 'image_tag', 'variant', 'status']
     prepopulated_fields = {'slug': ('name',)}
-    inlines = [ProductVariantsInline]
+    inlines = [ProductVariantsInline, ProductImageInline]
     list_filter = ['status', 'category',]
 
 class VariantAdmin(admin.ModelAdmin):
@@ -29,8 +33,14 @@ class VariantAdmin(admin.ModelAdmin):
 class SliderAdmin(admin.ModelAdmin):
     list_display = ['product', 'description', 'status']
 
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'phone', 'email', 'product', 'status', 'create_at',]
+    list_filter = ['status']
+    readonly_fields = ('name', 'phone', 'email', 'create_at', 'quantity', 'note', 'update_at',)
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Order, OrderAdmin)
 admin.site.register(Age)
 admin.site.register(Variants, VariantAdmin)
 # admin.site.register(Slider, SliderAdmin)
