@@ -9,11 +9,11 @@ class ProductImageInline(admin.TabularInline):
     extra = 3
 
 class CategoryAdmin(admin.ModelAdmin):
-    # def category_urun_count(self, obj):
-    #     return obj.urun_set.count()
-    #
-    # category_urun_count.short_description = "Ürün Sayısı"  V 'category_urun_count'
-    list_display = ['name', 'id', 'status', ]
+    def category_urun_count(self, obj):
+        return obj.product_set.count()
+
+    category_urun_count.short_description = "Ürün Sayısı"
+    list_display = ['name', 'id', 'status', 'category_urun_count']
     prepopulated_fields = {'slug': ('name',)}
 
 class ProductVariantsInline(admin.TabularInline):

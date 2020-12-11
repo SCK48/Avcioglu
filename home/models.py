@@ -2,6 +2,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 
 # Create your models here.
+from django.utils.safestring import mark_safe
 from phonenumber_field.modelfields import PhoneNumberField
 from django.forms import ModelForm, TextInput, Textarea
 
@@ -80,6 +81,10 @@ class SettingGallery(models.Model):
 
     def __str__(self):
         return self.title
+
+    def image_tag(self):
+        return mark_safe('<img src="{}" height="100"/>'.format(self.image.url))
+    image_tag.short_description = 'Resim'
 
     class Meta:
         verbose_name='Galeri'

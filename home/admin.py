@@ -20,7 +20,7 @@ class SettingAdmin(admin.ModelAdmin):
     inlines = [GalleryInline]
 
 class GalleryAdmin(admin.ModelAdmin):
-    list_display = ['title', 'setting', 'image']
+    list_display = ['title', 'setting', 'image_tag']
 
 
 AdminSite.site_header = 'Avcıoğlu Tarım'
