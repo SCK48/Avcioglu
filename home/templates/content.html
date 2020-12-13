@@ -3,9 +3,9 @@
 <div class="container">
     <hr>
     <div class="glider-contain" >
-        <div class="glider" >
-            {% for rs in slider %}
-                <div><img alt="" style="border:5px solid #4eae3a" src="{{ rs.product.image.url }}"></div>
+        <div id="glider" class="glider" >
+            {% for counter in slider %}
+                <div><a href="/kategori/{{ counter.product.category.id }}/{{ counter.category.slug }}"><img alt="" style="border:5px solid #4eae3a" src="{{ counter.product.category.image.url }}"></a></div>
             {% endfor %}
         </div>
         <button class="glider-prev">&laquo;</button>
@@ -117,5 +117,32 @@
     </div>
 </div>
 {% block extrajs %}
+    <script>
+        const glider = document.getElementById('glider');
 
+        function sliderAuto(slider, miliseconds) {
+            slider.isLastSlide = function() {
+                return slider.page >= document.getElementsByClassName('glider-slide').length - 1;
+            };
+
+            var slide = function() {
+                slider.slideTimeout = setTimeout(function() {
+                    function slideTo() {
+                        return slider.isLastSlide() ? 0 : slider.page + 1;
+                    }
+
+                    slider.scrollItem(slideTo(), true);
+                }, miliseconds);
+            };
+
+            slider.ele.addEventListener('glider-animated', function(event) {
+                window.clearInterval(slider.slideTimeout);
+                slide();
+            });
+
+            slide();
+        }
+
+        sliderAuto(glider, 1000)
+    </script>
 {% endblock %}

@@ -119,6 +119,10 @@ class Slider(models.Model):
     def __str__(self):
         return self.product.name
 
+    @property
+    def category(self):
+        return (self.product.category)
+
     class Meta:
         verbose_name='Slider'
         verbose_name_plural='Sliderlar'

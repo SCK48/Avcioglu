@@ -31,7 +31,7 @@ class VariantAdmin(admin.ModelAdmin):
     list_display = ['title', 'product', 'age', 'price']
 
 class SliderAdmin(admin.ModelAdmin):
-    list_display = ['product', 'description', 'status']
+    list_display = ['product', 'description', 'category', 'status']
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'phone', 'email', 'product', 'status', 'create_at',]
