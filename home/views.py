@@ -107,7 +107,7 @@ def product_detail(request,id,slug):
     url = request.META.get('HTTP_REFERER')
     category = Category.objects.filter(status='Açık').order_by('id')
     product = Product.objects.get(pk=id)
-    related_products = Product.objects.filter(category_id=product.category_id, status='Açık')[:5]
+    related_products = Product.objects.filter(category_id=product.category_id, status='Açık')[:4]
     product_gallery = Images.objects.filter(product_id=id)
     setting = Setting.objects.get(pk=1)
     if request.method == 'POST':

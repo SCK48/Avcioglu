@@ -137,7 +137,7 @@ class Order(models.Model):
     name = models.CharField(max_length=50, verbose_name='Ad&Soyad')
     phone = PhoneNumberField(verbose_name='Telefon')
     email = models.CharField(max_length=30, verbose_name='E-Posta')
-    quantity = models.IntegerField()
+    quantity = models.IntegerField(verbose_name='Adet')
     status = models.CharField(max_length=30, choices=DURUM, default='Yeni')
     note = models.CharField(blank=True, max_length=200, verbose_name='Açıklama')
     create_at = models.DateTimeField(auto_now_add=True, verbose_name='Oluşturulma Tarihi')

@@ -1,6 +1,17 @@
 {% load static %}
-<div class="container">
 
+<div class="container">
+    <hr>
+    <div class="glider-contain" >
+        <div class="glider" >
+            {% for rs in slider %}
+                <div><img alt="" style="border:5px solid #4eae3a" src="{{ rs.product.image.url }}"></div>
+            {% endfor %}
+        </div>
+        <button class="glider-prev">&laquo;</button>
+        <button class="glider-next">&raquo;</button>
+        <div id="dots"></div>
+    </div>
     <div class="services-bar">
         <h1 class="my-4"> </h1>
         <!-- Services Section -->

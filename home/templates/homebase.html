@@ -2,18 +2,104 @@
 <html lang="en">
 <head>
     {% load static %}
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<title> Avcıoğlu Fidancılık </title>
-	<!-- Bootstrap core CSS -->
-	<link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-	<!-- Fontawesome CSS -->
-	<link href="{% static 'css/all.css' %}" rel="stylesheet">
-	<!-- Custom styles for this template -->
-	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title> Avcıoğlu Fidancılık </title>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Fontawesome CSS -->
+    <link href="{% static 'css/all.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link href="{{ setting.icon.url }}" rel="shortcut icon"/>
+
+    <link rel="stylesheet" href="{% static 'css/glider.css' %}">
+    <script src="{% static '/js/glider.js' %}"></script>
+    <script>
+      window.addEventListener('load',function(){
+
+        window._ = new Glider(document.querySelector('.glider'), {
+            slidesToShow: 1, //'auto',
+            slidesToScroll: 1,
+            itemWidth: 150,
+            draggable: true,
+            scrollLock: false,
+
+            dots: '#dots',
+            rewind: true,
+            arrows: {
+                prev: '.glider-prev',
+                next: '.glider-next'
+            },
+            responsive: [
+                {
+                    breakpoint: 800,
+                    settings: {
+                        slidesToScroll: 'auto',
+                        itemWidth: 300,
+                        slidesToShow: 'auto',
+                        exactWidth: true
+                    }
+                },
+                {
+                    breakpoint: 700,
+                    settings: {
+                        slidesToScroll: 4,
+                        slidesToShow: 4,
+                        dots: false,
+                        arrows: false,
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToScroll: 3,
+                        slidesToShow: 3
+                    }
+                },
+                {
+                    breakpoint: 500,
+                    settings: {
+                        slidesToScroll: 2,
+                        slidesToShow: 2,
+                        dots: false,
+                        arrows: false,
+                        scrollLock: true
+                    }
+                }
+            ]
+        });
+      });
+    </script>
+
+
+    <!--
+        Used to frame the glider on the page
+
+        Not necessary for Glider.js
+    -->
+    <style type="text/css">
+        * {
+            box-sizing: border-box
+        }
+        html, body {
+            width: 100%;
+            {#overflow: hidden;#}
+        }
+        .glider-contain {
+            width: 90%;
+            max-width: 997px;
+            margin: 0 auto;
+        }
+        .glider-slide {
+            min-height: 150px;
+        }
+        .glider-slide img {
+            width: 100%;
+        }
+    </style>
     <style>
         #myBtn {
             display: none; /* Hidden by default */
@@ -34,28 +120,31 @@
         #myBtn:hover {
             background-color: #25D366; /* Add a dark-grey background on hover */
         }
+
     </style>
     {% block header %}  {% endblock %}
 </head>
 <body>
 {% include 'header.html' %}
 <button onclick="window.open('https://wa.me/905373815390')" id="myBtn" title="Whatsapp Sipariş Hattı">
-        <span class="fab fa-whatsapp"></span></button>
+    <span class="fab fa-whatsapp"></span></button>
 {% block slider %}  {% endblock %}
 {% block content %}{% endblock %}
 {% include 'footer.html' %}
 {% block extrajs %}{% endblock %}
 <script>
-        //Get the button:
-        mybutton = document.getElementById("myBtn");
+    //Get the button:
+    mybutton = document.getElementById("myBtn");
 
-        // When the user scrolls down 20px from the top of the document, show the button
-        //window.onscroll = function() {scrollFunction()};
-        window.onload = function() {scrollFunction()};
+    // When the user scrolls down 20px from the top of the document, show the button
+    //window.onscroll = function() {scrollFunction()};
+    window.onload = function() {scrollFunction()};
 
-        function scrollFunction() {
-            mybutton.style.display = "block";
-        }
+    function scrollFunction() {
+        mybutton.style.display = "block";
+    }
+
+
 </script>
 </body>
 </html>
