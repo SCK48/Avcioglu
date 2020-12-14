@@ -12,7 +12,7 @@ from product.models import Category, Product, Slider, Order, Images
 
 
 def index(request):
-    category = Category.objects.filter(status='Açık').order_by('id')
+    category = Category.objects.filter(status='Açık').order_by('name')
     product = Product.objects.filter(status='Açık').order_by('?')[:6]
     setting = Setting.objects.get(pk=1)
     slider = Slider.objects.filter(status=True).order_by('-id')
@@ -45,7 +45,7 @@ def contact(request):
             return HttpResponseRedirect('/iletisim')
 
     setting = Setting.objects.get(pk=1)
-    category = Category.objects.filter(status='Açık').order_by('id')
+    category = Category.objects.filter(status='Açık').order_by('name')
     form = ContactForm
     context = {
          'form': form,
@@ -56,7 +56,7 @@ def contact(request):
     return render(request, "contact.html", context)
 
 def aboutus(request):
-    category = Category.objects.filter(status='Açık').order_by('id')
+    category = Category.objects.filter(status='Açık').order_by('name')
     setting = Setting.objects.get(pk=1)
     gallery = SettingGallery.objects.filter(status=True)
     context = {
@@ -68,7 +68,7 @@ def aboutus(request):
     return render(request, "aboutus.html", context)
 
 def faq(request):
-    category = Category.objects.filter(status='Açık').order_by('id')
+    category = Category.objects.filter(status='Açık').order_by('name')
     faq = FAQ.objects.filter()
     setting = Setting.objects.get(pk=1)
     context = {
@@ -90,7 +90,7 @@ def category(request):
     return render(request, "category.html", context)
 
 def category_detail(request, id, slug):
-    category = Category.objects.filter(status='Açık').order_by('id')
+    category = Category.objects.filter(status='Açık').order_by('name')
     current_cat = Category.objects.get(pk=id)
     products = Product.objects.filter(status='Açık', category_id=id)
     setting = Setting.objects.get(pk=1)
@@ -105,7 +105,7 @@ def category_detail(request, id, slug):
 
 def product_detail(request,id,slug):
     url = request.META.get('HTTP_REFERER')
-    category = Category.objects.filter(status='Açık').order_by('id')
+    category = Category.objects.filter(status='Açık').order_by('name')
     product = Product.objects.get(pk=id)
     related_products = Product.objects.filter(category_id=product.category_id, status='Açık')[:4]
     product_gallery = Images.objects.filter(product_id=id)
@@ -154,8 +154,8 @@ def handler500(request):
     return render(request, '500.html', context)
 
 def gallery(request):
-    category = Category.objects.filter(status='Açık').order_by('id')
-    images = Product.objects.filter(status='Açık').order_by('-id')
+    category = Category.objects.filter(status='Açık').order_by('name')
+    images = Product.objects.filter(status='Açık').order_by('?')
     paginator = Paginator(images, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
