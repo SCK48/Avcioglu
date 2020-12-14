@@ -3,9 +3,13 @@
 <div class="container">
     <hr>
     <div class="glider-contain" >
-        <div id="glider" class="glider" >
+        <div id="glider" class="glider">
             {% for counter in slider %}
-                <div><a href="/kategori/{{ counter.product.category.id }}/{{ counter.category.slug }}"><img alt="" style="border:5px solid #4eae3a" src="{{ counter.product.category.image.url }}"></a></div>
+                <div>
+                    <a href="/kategori/{{ counter.product.category.id }}/{{ counter.category.slug }}">
+                        <img alt="" style="border:5px solid #4eae3a" src="{{ counter.product.category.image.url }}">
+                    </a>
+                </div>
             {% endfor %}
         </div>
         <button class="glider-prev">&laquo;</button>

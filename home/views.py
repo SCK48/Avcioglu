@@ -80,7 +80,7 @@ def faq(request):
     return render(request, "faq.html", context)
 
 def category(request):
-    category = Category.objects.filter(status='Açık').order_by('id')
+    category = Category.objects.filter(status='Açık').order_by('name')
     setting = Setting.objects.get(pk=1)
     context = {
         'category': category,
