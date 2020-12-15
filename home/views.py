@@ -123,15 +123,17 @@ def product_detail(request,id,slug):
             data.product = form.cleaned_data['product']
             data.ip = request.META.get('REMOTE_ADDR')
             data.save()
+            latestorder = Order.objects.latest('id')
             send_html_mail('Siparişiniz Alındı',
                       get_mail_content().format(name=data.name, product=data.product, quantity=data.quantity),
-                      recipient_list=[data.email]
+                      recipient_list=[data.email], sender='Avcıoğlu Tarım <info@avcioglutarim.com>'
                       )
-            send_html_mail('Yeni Sipariş',
+            send_html_mail(f'Yeni Sipariş #{latestorder.id}',
                            get_mail_content2().format(name=data.name,
                                                      product=data.product,
                                                      quantity=data.quantity,
                                                      note=data.note,
+                                                     id =latestorder.id,
                                                      mail=data.email,
                                                      phone=data.phone),
                            recipient_list=[setting.email]

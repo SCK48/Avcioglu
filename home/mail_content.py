@@ -11,7 +11,7 @@ def get_mail_content():
 
 def get_mail_content2():
     return """
-<p>Sipariş No         :  </p>
+<p>Sipariş No         : {id} </p>
 <p>Ürün               : {product} </p>
 <p>Adet               : {quantity}  </p>
 <p>Müşteri Ad & Soyad : {name}  </p>
