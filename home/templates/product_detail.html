@@ -30,7 +30,7 @@
                     <a href="/ürünler">Ürünlerimiz</a>
                 </li>
                 <li class="breadcrumb-item active">
-                    <a href="/kategori/{{ product.category_id }}/{{ product.category.slug }}">{{ product.category }} Grubu</a>
+                    <a href="/kategori/{{ product.category_id }}/{{ product.category.slug }}">{{ product.category }} </a>
                 </li>
                 <li class="breadcrumb-item active">{{ product.name }}</li>
             </ol>
@@ -47,71 +47,65 @@
                     {% endfor %}
                 {% endif %}
                 <!-- Preview Image -->
-                <img class="img-fluid rounded" style="border:5px solid #4eae3a" src="{{ product.image.url }}" alt=""/>
-            {% if product.images != 'None' %}
-                <div class="related-projects">
-                    <div class="row">
-                        {% for counter in product_gallery %}
-                            <div class="col-md-3 col-sm-4 mb-6">
-                                <a href="{{ counter.image.url }}" target="_blank">
-                                    <img class="img-fluid" style="border:5px solid #4eae3a" src="{{ counter.image.url }}" title="{{ counter.title }}" alt="" />
-                                </a>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            {% endif %}
                 <h4>{{ product.name }}</h4>
                 <hr>
                 <p><b>Hasat zamanı</b> : {{ product.date }}</p>
                 <hr>
-
-
                 <p>{{ product.about|safe }}</p>
+                <img class="img-fluid rounded" style="border:5px solid #4eae3a" src="{{ product.image.url }}" alt=""/>
 
+                {% for counter in product_gallery %}
+                    <img class="img-fluid" style="border:5px solid #4eae3a" src="{{ counter.image.url }}" title="{{ counter.title }}" alt="" />
+                {% endfor %}
+                {#                {% if product.images != 'None' %}#}
+                {#                    <div class="related-projects">#}
+                {#                        <div class="row">#}
+                {##}
+                {#                            <div class="col-md-3 col-sm-4 mb-6">#}
+                {#                                <a href="{{ counter.image.url }}" target="_blank">#}
+                {#                                </a>#}
+                {#                            </div>#}
+                {##}
+                {#                        </div>#}
+                {#                    </div>#}
+                {#                {% endif %}#}
                 <hr>
-                <div class="blog-right-side">
-
-                </div>
-                <div class="blog-right-side">
-                    <!-- Comments Form -->
-                    <div class="card my-4">
-                        <h5 class="card-header">Sipariş Ver:</h5>
-                        <div class="card-body">
-                            <form method="POST">
-                                {% csrf_token %}
-                                <div class="form-group">
-                                    <input class="form-control" type="hidden" name="product" value="{{ product.id }}">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" style="width: 50%" readonly placeholder="{{ product.name }}">
-                                </div>
-                                <div class="form-group">
-                                    <input type="number" min="1" name="quantity" class="form-control" style="width: 50%" value="1" >
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" name="name" value="" placeholder="Ad&Soyad">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" name="phone" value="" placeholder="Telefon: +90">
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" name="email" value="" placeholder="E-Posta">
-                                </div>
-                                <div class="form-group">
-                                    <label>
-                                        <textarea class="form-control" rows="2" name="note" placeholder="Açıklama"></textarea>
-                                    </label>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Gönder</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- Sidebar Widgets Column -->
             <div class="col-md-4 blog-right-side">
+                <div class="card my-4">
+                    <h5 class="card-header">Sipariş Ver:</h5>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input class="form-control" type="hidden" name="product" value="{{ product.id }}">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" style="width: 50%" readonly placeholder="{{ product.name }}">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" min="1" name="quantity" class="form-control" style="width: 50%" value="1" >
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" name="name" value="" placeholder="Ad&Soyad" >
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" name="phone" value="" placeholder="Telefon: +90" >
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" value="" placeholder="E-Posta">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <textarea class="form-control" rows="2" name="note" placeholder="Açıklama"></textarea>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Gönder</button>
+                        </form>
+                    </div>
+                </div>
                 <!-- Search Widget -->
                 {#                <div class="card mb-4">#}
                 {#                    <h5 class="card-header">Fidan Ara</h5>#}
@@ -137,7 +131,7 @@
                                         <ul class="list-unstyled mb-0">
                                             <li>
                                                 <a href="/kategori/{{ counter.id }}/{{ counter.slug }}">
-                                                    {{ counter.name }} Grubu
+                                                    {{ counter.name }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -147,7 +141,7 @@
                                         <ul class="list-unstyled mb-0">
                                             <li>
                                                 <a href="/kategori/{{ counter.id }}/{{ counter.slug }}">
-                                                    {{ counter.name }} Grubu
+                                                    {{ counter.name }}
                                                 </a>
                                             </li>
                                         </ul>

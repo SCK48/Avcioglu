@@ -9,7 +9,8 @@ from django.shortcuts import render
 from home.forms import OrderForm, SearchForm
 from home.models import Setting, ContactForm, ContactFormMessage, FAQ, SettingGallery
 from product.models import Category, Product, Slider, Order, Images
-
+from utils.mail import send_html_mail
+from .mail_content import get_mail_content, get_mail_content2
 
 def index(request):
     category = Category.objects.filter(status='Açık').order_by('name')
@@ -122,6 +123,19 @@ def product_detail(request,id,slug):
             data.product = form.cleaned_data['product']
             data.ip = request.META.get('REMOTE_ADDR')
             data.save()
+            send_html_mail('Siparişiniz Alındı',
+                      get_mail_content().format(name=data.name, product=data.product, quantity=data.quantity),
+                      recipient_list=[data.email]
+                      )
+            send_html_mail('Yeni Sipariş',
+                           get_mail_content2().format(name=data.name,
+                                                     product=data.product,
+                                                     quantity=data.quantity,
+                                                     note=data.note,
+                                                     mail=data.email,
+                                                     phone=data.phone),
+                           recipient_list=[setting.email]
+                           )
             messages.success(request,
                              "Siparişiniz Alınmıştır, En Kısa Sürede Telefon ile Geri Dönüş Yapılacaktır.")
             return HttpResponseRedirect(url)
@@ -195,3 +209,4 @@ def product_search_auto(request):
         data = 'fail'
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
+

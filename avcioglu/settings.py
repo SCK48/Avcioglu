@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import os
+import os, environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -145,8 +145,21 @@ CKEDITOR_CONFIGS = {
     },
 }
 
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+environ.Env.read_env()
+
+EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS')
+EMAIL_HOST = env.str('EMAIL_HOST')
+EMAIL_PORT = env.int('EMAIL_PORT')
+EMAIL_SEND_USER = env.str('EMAIL_SEND_USER')
+EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD')
 
 try:
     from avcioglu.local_settings import *
 except:
     pass
+
+
