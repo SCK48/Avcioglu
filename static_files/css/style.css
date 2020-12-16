@@ -191,11 +191,11 @@ button.btn-secondary:hover{
 .portfolio-main .card .card-body .card-title a{
 	font-size: 20px;
 	font-weight: 400;
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 	color: #4e3914;
 }
 .portfolio-main .card .card-body{
-	background: #4eae3a;  /* 4e3914 */
+	background: white;  /* 4e3914 */
 	padding: 10px 20px;
 
 }

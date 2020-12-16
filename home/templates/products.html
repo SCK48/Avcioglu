@@ -15,7 +15,7 @@
                 <li class="breadcrumb-item">
                     <a href="/">Ana Sayfa</a>
                 </li>
-                <li class="breadcrumb-item active"><a href="/ürünler">Ürünlerimiz</a></li>
+                <li class="breadcrumb-item active"><a href="/urunler">Ürünlerimiz</a></li>
                 <li class="breadcrumb-item active">{{ current_cat }} Grubu</li>
             </ol>
         </div>
@@ -24,12 +24,12 @@
             {% for counter in products %}
                 <div class="col-lg-6 portfolio-item">
                     <div class="card h-100">
-                                    <a href="/ürün/{{ counter.id }}/{{ counter.slug }}">
-                        <img class="card-img-top" style="border:5px solid #4eae3a" src="{{ counter.image.url }}" alt="" />
+                                    <a href="/urun/{{ counter.id }}/{{ counter.slug }}">
+                        <img class="card-img-top" src="{{ counter.image.url }}" alt="" />
                                     </a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="/ürün/{{ counter.id }}/{{ counter.slug }}">{{ counter.name }}</a>
+                                <a href="/urun/{{ counter.id }}/{{ counter.slug }}">{{ counter.name }}</a>
                             </h4>
                             <p><strong>Hasat Zamanı: {{ counter.date }}</strong></p>
                             <p class="card-text">{{ counter.about|safe }}</p>

@@ -68,6 +68,7 @@
             height: 15px;
             width: 15px;
             margin: 0 2px;
+            margin-top: 10px;
             background-color: #bbb;
             border-radius: 50%;
             display: inline-block;
@@ -220,12 +221,12 @@
                     {% for counter in related_products %}
                         <div class="col-md-3 col-sm-6 mb-4 portfolio-item">
                             <div class="card h-100">
-                                <a href="/ürün/{{ counter.id }}/{{ counter.slug }}">
-                                    <img class="img-fluid" style="border:5px solid #4eae3a" src="{{ counter.image.url }}" title="{{ counter.name }}" alt="" />
+                                <a href="/urun/{{ counter.id }}/{{ counter.slug }}">
+                                    <img class="img-fluid" src="{{ counter.image.url }}" title="{{ counter.name }}" alt="" />
                                 </a>
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <a href="/ürün/{{ counter.id }}/{{ counter.slug }}">{{ counter.name }}</a>
+                                        <a href="/urun/{{ counter.id }}/{{ counter.slug }}">{{ counter.name }}</a>
                                     </h4>
                                 </div>
                             </div>
