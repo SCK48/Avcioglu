@@ -117,12 +117,12 @@
                 <div class="slideshow-container">
                     <div class="mySlides">
                         <img src="{{ product.image.url }}" style="width:100%">
-                        <div class="text">Caption Text</div>
+                        {#                        <div class="text">Caption Text</div>#}
                     </div>
                     {% for counter in product_gallery %}
                         <div class="mySlides">
                             <img src="{{ counter.image.url }}" style="width:100%">
-{#                            <div class="text">Caption Text</div>#}
+                            {#                            <div class="text">Caption Text</div>#}
                         </div>
                     {% endfor %}
                     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -176,22 +176,6 @@
             </div>
             <!-- Sidebar Widgets Column -->
             <div class="col-md-4 blog-right-side">
-
-                <!-- Search Widget -->
-                {#                <div class="card mb-4">#}
-                {#                    <h5 class="card-header">Fidan Ara</h5>#}
-                {#                    <div class="card-body">#}
-                {#                        <form class="form-search col-md-12" method="post" action="/search/">#}
-                {#                        <div class="input-group">#}
-                {#                            <input type="text" class="form-control" id="query" name="query" placeholder="Ne Aramıştınız?">#}
-                {#                            <span class="input-group-btn">#}
-                {#                                <button class="btn btn-secondary" type="button">Ara</button>#}
-                {#                            </span>#}
-                {#                        </div>#}
-                {#                        </form>#}
-                {#                    </div>#}
-                {#                </div>#}
-                <!-- Categories Widget -->
                 <div class="card my-4">
                     <h5 class="card-header">Ürünlerimiz</h5>
                     <div class="card-body">
@@ -231,13 +215,20 @@
                 </div>
             </div>
             <div class="related-projects">
-                <h3>{{ product.category.name }} Grubu</h3>
+                <h3>{{ product.category.name }}</h3>
                 <div class="row">
                     {% for counter in related_products %}
-                        <div class="col-md-3 col-sm-6 mb-4">
-                            <a href="/ürün/{{ counter.id }}/{{ counter.slug }}">
-                                <img class="img-fluid" style="border:5px solid #4eae3a" src="{{ counter.image.url }}" title="{{ counter.name }}" alt="" />
-                            </a>
+                        <div class="col-md-3 col-sm-6 mb-4 portfolio-item">
+                            <div class="card h-100">
+                                <a href="/ürün/{{ counter.id }}/{{ counter.slug }}">
+                                    <img class="img-fluid" style="border:5px solid #4eae3a" src="{{ counter.image.url }}" title="{{ counter.name }}" alt="" />
+                                </a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="/ürün/{{ counter.id }}/{{ counter.slug }}">{{ counter.name }}</a>
+                                    </h4>
+                                </div>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>
