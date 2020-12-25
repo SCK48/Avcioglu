@@ -186,6 +186,7 @@ button.btn-secondary:hover{
 	overflow: hidden;
 }
 .portfolio-main .card .card-body .card-title{
+	text-align: center;
 	margin-bottom: 0px;
 }
 .portfolio-main .card .card-body .card-title a{
