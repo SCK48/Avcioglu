@@ -150,6 +150,7 @@ env = environ.Env(
 )
 environ.Env.read_env()
 
+SENDGRID_API_KEY = env.str('SENDGRID_API_KEY')
 
 EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS')
 EMAIL_HOST = env.str('EMAIL_HOST')

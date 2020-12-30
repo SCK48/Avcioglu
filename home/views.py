@@ -11,7 +11,6 @@ from home.models import Setting, ContactForm, ContactFormMessage, FAQ, SettingGa
 from product.models import Category, Product, Slider, Order, Images
 from utils.mail import send_html_mail
 from .mail_content import get_mail_content, get_mail_content2
-from django.core.mail import send_mail
 
 def index(request):
     category = Category.objects.filter(status='Açık').order_by('name')
@@ -124,26 +123,21 @@ def product_detail(request,id,slug):
             data.product = form.cleaned_data['product']
             data.ip = request.META.get('REMOTE_ADDR')
             data.save()
-            # latestorder = Order.objects.latest('id')
-            send_mail('Siparişiniz Alındı',
+            latestorder = Order.objects.latest('id')
+            send_html_mail('Siparişiniz Alındı',
                       get_mail_content().format(name=data.name, product=data.product, quantity=data.quantity),
-                      'info@avcioglutarim.com',
-                      recipient_list=[data.email],
-                      fail_silently=False)
-            # send_html_mail('Siparişiniz Alındı',
-            #           get_mail_content().format(name=data.name, product=data.product, quantity=data.quantity),
-            #           recipient_list=[data.email], sender='Avcıoğlu Tarım <info@avcioglutarim.com>'
-            #           )
-            # send_html_mail(f'Yeni Sipariş #{latestorder.id}',
-            #                get_mail_content2().format(name=data.name,
-            #                                          product=data.product,
-            #                                          quantity=data.quantity,
-            #                                          note=data.note,
-            #                                          id =latestorder.id,
-            #                                          mail=data.email,
-            #                                          phone=data.phone),
-            #                recipient_list=[setting.email]
-            #                )
+                      recipient_list=[data.email], sender='Avcıoğlu Tarım <info@avcioglutarim.com>'
+                      )
+            send_html_mail(f'Yeni Sipariş #{latestorder.id}',
+                           get_mail_content2().format(name=data.name,
+                                                     product=data.product,
+                                                     quantity=data.quantity,
+                                                     note=data.note,
+                                                     id =latestorder.id,
+                                                     mail=data.email,
+                                                     phone=data.phone),
+                           recipient_list=[setting.email]
+                           )
             messages.success(request,
                              "Siparişiniz Alınmıştır, En Kısa Sürede Telefon ile Geri Dönüş Yapılacaktır.")
             return HttpResponseRedirect(url)
