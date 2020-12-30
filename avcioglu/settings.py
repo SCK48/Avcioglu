@@ -150,12 +150,16 @@ env = environ.Env(
 )
 environ.Env.read_env()
 
+SENDGRID_API_KEY = os.getenv('d-f14786d9018343348ce48fa7e6c1e4a9')
+
 EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS')
 EMAIL_HOST = env.str('EMAIL_HOST')
 EMAIL_PORT = env.int('EMAIL_PORT')
 EMAIL_SEND_USER = env.str('EMAIL_SEND_USER')
 EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+
+# env.str('EMAIL_HOST_PASSWORD')
 
 try:
     from avcioglu.local_settings import *
