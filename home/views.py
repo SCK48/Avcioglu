@@ -127,7 +127,7 @@ def product_detail(request,id,slug):
             # latestorder = Order.objects.latest('id')
             send_mail('Siparişiniz Alındı',
                       get_mail_content().format(name=data.name, product=data.product, quantity=data.quantity),
-                      'Avcıoğlu Tarım <info@avcioglutarim.com>',
+                      'info@avcioglutarim.com',
                       recipient_list=[data.email],
                       fail_silently=False)
             # send_html_mail('Siparişiniz Alındı',
